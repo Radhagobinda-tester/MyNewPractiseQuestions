@@ -33,6 +33,8 @@ public class AmazonTitlesofiPhoneProducts {
         WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
         searchBox.sendKeys("iPhone");
         searchBox.sendKeys(Keys.ENTER);
+        WebElement checkboxLabel = driver.findElement(By.xpath("//span[text()='Apple']"));
+        checkboxLabel.click();
 
         // Create a LinkedHashSet to store unique iPhone titles in order
         Set<String> allIphoneNames = new LinkedHashSet<>();
@@ -59,9 +61,9 @@ public class AmazonTitlesofiPhoneProducts {
                 // Wait for 'Next' button to appear and be clickable
                 WebElement nextBtn = wait.until(ExpectedConditions.elementToBeClickable(
                         By.xpath("//a[contains(text(), 'Next')]")));
-
-                // Scroll to 'Next' button and click using JavaScript (more reliable)
+     // Scroll to 'Next' button and click using JavaScript (more reliable)
                 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", nextBtn);
+ 
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextBtn);
 
                 // Wait for new page to load (wait for the presence of search results again)
