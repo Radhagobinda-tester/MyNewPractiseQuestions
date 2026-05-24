@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 /* 
  * 1) Link href="Links value"
 // * 2)https:// xyz to ------> sever ------> status code
@@ -24,9 +25,13 @@ public class BrokenLinks {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
+		ChromeOptions option =new ChromeOptions();
+		option.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
-		driver.get("http://www.deadlinkcity.com/");
+		//https://www.yatra.com/
+//		
+		driver.get("https://www.ixigo.com/");
 //		Getting the link from the server 
 		int countOfBrokenlink = 0;
 		List<WebElement> href = driver.findElements(By.tagName("a"));
@@ -44,7 +49,7 @@ public class BrokenLinks {
 			}
 			try {
 //			Hitting tthe URL 
-		   URL linkUrl = new URL(hrefValue); //	coverting th string tpo URL 
+		   URL linkUrl = new URL(hrefValue); //	coverting th string to URL 
 		   HttpURLConnection conn = (HttpURLConnection) linkUrl.openConnection(); //open connection to connect the URL 
 		   conn.connect(); //Connect tthe URL and sent request
 		   if(conn.getResponseCode()>=400) {
