@@ -2,8 +2,9 @@ package PractiseQuestions;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -20,29 +21,28 @@ public class FacebookAllLinksCheck {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-
-        driver.get("https://www.facebook.com/business?locate=enus");
+        driver.get("https://darshanpatelwp.com/");
 
         // Wait for page to load dynamic content
         Thread.sleep(5000);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        // Scroll down to load all dynamic links
+        // Scroll to bottom (to load dynamic links)
         long lastHeight = (long) js.executeScript("return document.body.scrollHeight");
         while (true) {
             js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-            Thread.sleep(3000); // wait for content to load
+            Thread.sleep(3000);
 
             long newHeight = (long) js.executeScript("return document.body.scrollHeight");
             if (newHeight == lastHeight) {
-                break; // reached bottom
+                break;
             }
             lastHeight = newHeight;
         }
 
-        // Use a list to include all links, even duplicates
-        List<String> allLinks = new ArrayList<>();
+        // Use Set to store unique links
+        Set<String> uniqueLinks = new LinkedHashSet<>();
 
         // Fetch all <a> elements
         List<WebElement> hrefElements = driver.findElements(By.tagName("a"));
@@ -52,39 +52,48 @@ public class FacebookAllLinksCheck {
             try {
                 String hrefValue = link.getAttribute("href");
 
-                // Convert relative URLs to absolute if not null
-                if (hrefValue != null && hrefValue.startsWith("/")) {
-                    hrefValue = "https://www.facebook.com" + hrefValue;
+                if (hrefValue == null || hrefValue.isEmpty()) {
+                    continue; // skip empty
                 }
 
-                allLinks.add(hrefValue); // add null/empty links too
+                // Convert relative URLs to absolute
+                if (hrefValue.startsWith("/")) {
+                    hrefValue = "https://darshanpatelwp.com" + hrefValue;
+                }
+
+                // Skip mailto and javascript links
+                if (hrefValue.startsWith("mailto:") || hrefValue.startsWith("javascript:")) {
+                    continue;
+                }
+
+                uniqueLinks.add(hrefValue);
+
             } catch (Exception e) {
                 System.out.println("Error reading link: " + e.getMessage());
             }
         }
 
-        System.out.println("Total links to check: " + allLinks.size());
+        System.out.println("Total unique links to check: " + uniqueLinks.size());
 
         // Check links using HTTP connection
         int brokenLinkCount = 0;
-        for (String urlStr : allLinks) {
+        for (String urlStr : uniqueLinks) {
             try {
-                if (urlStr == null || urlStr.isEmpty()) {
-                    System.out.println("Empty or null link skipped.");
-                    continue;
-                }
-
                 URL url = new URL(urlStr);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("HEAD"); // faster than GET
+                conn.setRequestMethod("HEAD");
                 conn.connect();
                 int respCode = conn.getResponseCode();
 
-                if (respCode >= 400) {
+                if (respCode == 200) {
+                    System.out.println("Valid link: " + urlStr + " (Response code: " + respCode + ")");
+                } else if (respCode == 999 && urlStr.contains("linkedin.com")) {
+                    System.out.println("Protected link (LinkedIn blocked): " + urlStr);
+                } else if (respCode >= 400) {
                     System.out.println("Broken link: " + urlStr + " (Response code: " + respCode + ")");
                     brokenLinkCount++;
                 } else {
-                    System.out.println("Valid link: " + urlStr + " (Response code: " + respCode + ")");
+                    System.out.println("Other response: " + urlStr + " (Response code: " + respCode + ")");
                 }
             } catch (Exception e) {
                 System.out.println("Error checking link: " + urlStr + " -> " + e.getMessage());

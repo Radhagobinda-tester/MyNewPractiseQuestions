@@ -22,7 +22,7 @@ public class FacebookBrokeLinks {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        driver.get("https://www.facebook.com/business?locate=enus");
+        driver.get("https://www.firstcry.com/");
 
         // Wait for page to load dynamic content
         Thread.sleep(5000);
@@ -60,7 +60,7 @@ public class FacebookBrokeLinks {
 
                 // Convert relative URLs to absolute
                 if (hrefValue.startsWith("/")) {
-                    hrefValue = "https://www.facebook.com" + hrefValue;
+                    hrefValue = "https://www.firstcry.com" + hrefValue;
                 }
 
                 allLinks.add(hrefValue);

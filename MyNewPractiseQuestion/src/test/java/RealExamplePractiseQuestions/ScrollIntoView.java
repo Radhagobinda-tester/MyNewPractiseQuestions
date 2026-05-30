@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class ScrolllntoView {
+public class ScrollIntoView {
 
     public static void main(String[] args) {
         // ✅ Setup ChromeDriver automatically using WebDriverManager
@@ -83,9 +83,11 @@ public class ScrolllntoView {
 
         // ✅ Scroll to the bottom of the page
         js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        System.out.println("Scrolled to bottom: " + js.executeScript("return document.documentElement.scrollTop;"));
 
         // ✅ Scroll back to the top of the page
         js.executeScript("window.scrollTo(0, 0);");
+        System.out.println("Scrolled back to top: " + js.executeScript("return document.documentElement.scrollTop;"));
 
         // ✅ Close browser after execution
         driver.quit();

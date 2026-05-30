@@ -22,11 +22,7 @@ public class Screenshots {
         // Take screenshot
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
-/*
-        // Ensure the directory exists
-        File folder = new File(".\\Screenshot");
-        if (!folder.exists()) folder.mkdir();
-*/
+
         File dest = new File(".\\Screenshot\\homepage1.png");
         FileUtils.copyFile(src, dest);
         System.out.println("Screenshot saved at: " + dest.getAbsolutePath());

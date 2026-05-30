@@ -1,16 +1,11 @@
 package PractiseQuestions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+<<<<<<< Updated upstream
 import org.openqa.selenium.chrome.ChromeOptions;
 /* 
  * 1) Link href="Links value"
@@ -67,5 +62,67 @@ public class BrokenLinks {
 		Thread.sleep(5000);
 		driver.close();
 	}
+=======
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class BrokenLinks {
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+      // http://www.deadlinkcity.com/
+        driver.get("https://housivity.com/blog");
+>>>>>>> Stashed changes
+
+        int countOfBrokenlink = 0;
+
+        // Collect all links
+        List<WebElement> hrefElements = driver.findElements(By.tagName("a"));
+        System.out.println("The total number of links found: " + hrefElements.size());
+
+        // Use Set to avoid duplicate URLs
+        Set<String> uniqueLinks = new HashSet<>();
+        for (WebElement link : hrefElements) {
+            String hrefValue = link.getAttribute("href");
+            if (hrefValue != null && !hrefValue.trim().isEmpty() && !hrefValue.startsWith("javascript")) {
+                uniqueLinks.add(hrefValue);
+            }
+        }
+
+        System.out.println("Unique links to check: " + uniqueLinks.size());
+
+        // Check each link
+        for (String url : uniqueLinks) {
+            try {
+                HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                conn.setConnectTimeout(5000); // avoid hanging
+                conn.connect();
+
+                int statusCode = conn.getResponseCode();
+
+                if (statusCode >= 400) {
+                    System.out.println("❌ Broken link: " + url + " [Status: " + statusCode + "]");
+                    countOfBrokenlink++;
+                } else {
+                    System.out.println("✅ Valid link: " + url + " [Status: " + statusCode + "]");
+                }
+
+            } catch (Exception e) {
+                System.out.println("⚠️ Error checking: " + url + " -> " + e.getMessage());
+                countOfBrokenlink++;
+            }
+        }
+
+        System.out.println("\nTotal unique links checked: " + uniqueLinks.size());
+        System.out.println("Broken links found: " + countOfBrokenlink);
+
+        driver.quit();
+    }
 }

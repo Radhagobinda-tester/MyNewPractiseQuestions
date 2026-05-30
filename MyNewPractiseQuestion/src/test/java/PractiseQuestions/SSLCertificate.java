@@ -10,12 +10,12 @@ public class SSLCertificate {
 
 	public static void main(String[] args) {
 		ChromeOptions option = new ChromeOptions();
-		// Activating the ssl certificate 
+		// Activating the ssl certificate
 		option.setAcceptInsecureCerts(true);
 		WebDriverManager.chromedriver().setup();
-         WebDriver driver = new ChromeDriver(option);
-         driver.manage().window().maximize();
-         driver.get("https://expired.badssl.com");
+		WebDriver driver = new ChromeDriver(option);
+		driver.manage().window().maximize();
+		driver.get("https://expired.badssl.com");
 	}
 
 }

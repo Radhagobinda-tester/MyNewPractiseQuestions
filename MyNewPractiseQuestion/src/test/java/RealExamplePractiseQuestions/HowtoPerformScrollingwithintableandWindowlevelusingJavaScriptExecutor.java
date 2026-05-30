@@ -70,7 +70,7 @@ public class HowtoPerformScrollingwithintableandWindowlevelusingJavaScriptExecut
     System.out.println("Total sum of the 6th column: " + df.format(sum));
 
     
-	
+	driver.quit();
 	
 	}
 
