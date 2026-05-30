@@ -50,7 +50,7 @@ public class ShadowDomPractise {
 		);
 
 		SearchContext shadow = host.getShadowRoot();
-		
+//		 Shadow dom element should be locate by cssSelector 
 		
 		WebElement field = shadow.findElement(By.cssSelector("input[placeholder='Name']"));
 		field.sendKeys("Radha");

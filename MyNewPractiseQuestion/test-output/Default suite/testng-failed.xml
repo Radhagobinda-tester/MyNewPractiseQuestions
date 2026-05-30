@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="QuestinAskedInIntervview.MouseHoverPractise">
+      <class name="QuestinAskedInIntervview.BrokenLinkChecker">
         <methods>
-          <include name="openApp"/>
-          <include name="testMethod"/>
           <include name="closeApp"/>
+          <include name="test"/>
+          <include name="openApp"/>
         </methods>
-      </class> <!-- QuestinAskedInIntervview.MouseHoverPractise -->
+      </class> <!-- QuestinAskedInIntervview.BrokenLinkChecker -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
