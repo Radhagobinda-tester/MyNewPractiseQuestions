@@ -10,18 +10,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DownloadAFile {
+public class HeadlessFileDownload {
 
     public static void main(String[] args) throws InterruptedException {
-        // Set download directory to project's Downloads folder
+
+    	// Set download directory to project's Downloads folder
         String downloadPath = System.getProperty("user.dir") + "\\Downloads\\";
 
         // Create preferences map for Chrome
@@ -71,3 +67,4 @@ public class DownloadAFile {
         driver.quit();
     }
 }
+

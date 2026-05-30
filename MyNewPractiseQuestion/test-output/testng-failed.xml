@@ -3,6 +3,7 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+<<<<<<< Updated upstream
       <class name="QuestinAskedInIntervview.BrokenLinkChecker">
         <methods>
           <include name="closeApp"/>
@@ -10,6 +11,15 @@
           <include name="openApp"/>
         </methods>
       </class> <!-- QuestinAskedInIntervview.BrokenLinkChecker -->
+=======
+      <class name="webTablePractise.dynamicTableHandling">
+        <methods>
+          <include name="OpenApp"/>
+          <include name="closeApp"/>
+          <include name="extractingData"/>
+        </methods>
+      </class> <!-- webTablePractise.dynamicTableHandling -->
+>>>>>>> Stashed changes
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

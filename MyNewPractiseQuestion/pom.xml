@@ -13,8 +13,8 @@
    <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
-    <version>4.23.0</version> <!-- Use the latest -->
-</dependency>
+    <version>4.33.0</version> <!-- Use the latest -->
+    </dependency>
 
 
 

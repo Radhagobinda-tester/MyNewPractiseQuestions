@@ -44,8 +44,8 @@ public class MMTDepartureReturnDateSelect {
         departureLabel.click();
 
         // Target Departure Date
-        String depMonth = "October";
-        String depYear = "2025";
+        String depMonth = "March";
+        String depYear = "2026";
         String depDate = "15";
 
         // Loop until required Departure Month-Year appears (Left Calendar)

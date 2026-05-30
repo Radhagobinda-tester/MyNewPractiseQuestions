@@ -1,0 +1,15 @@
+Page URL, Link, Status, ResponseCode
+https://darshanpatelwp.com/#content,https://darshanpatelwp.com/#content,VALID,200
+https://darshanpatelwp.com/,https://darshanpatelwp.com/,VALID,200
+https://darshanpatelwp.com/about-me/,https://darshanpatelwp.com/about-me/,VALID,200
+https://darshanpatelwp.com/about-me/#content,https://darshanpatelwp.com/about-me/#content,VALID,200
+https://darshanpatelwp.com/services/,https://darshanpatelwp.com/services/,VALID,200
+https://darshanpatelwp.com/services/#content,https://darshanpatelwp.com/services/#content,VALID,200
+https://darshanpatelwp.com/portfolio/,https://darshanpatelwp.com/portfolio/,VALID,200
+https://darshanpatelwp.com/portfolio/#content,https://darshanpatelwp.com/portfolio/#content,VALID,200
+https://darshanpatelwp.com/blogs/,https://darshanpatelwp.com/blogs/,VALID,200
+https://darshanpatelwp.com/blogs/#content,https://darshanpatelwp.com/blogs/#content,VALID,200
+https://darshanpatelwp.com/contact-me/,https://darshanpatelwp.com/contact-me/,VALID,200
+https://darshanpatelwp.com/contact-me/#content,https://darshanpatelwp.com/contact-me/#content,VALID,200
+https://www.linkedin.com/in/darshan-patel-wp/,https://www.linkedin.com/in/darshan-patel-wp/,BROKEN,999
+https://www.youtube.com/@DarshanPatelWP,https://www.youtube.com/@DarshanPatelWP,VALID,200
